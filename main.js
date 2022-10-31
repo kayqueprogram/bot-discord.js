@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {Client, Collection, ActivityType, Events, GatewayIntentBits} = require('discord.js');
+const {	VoiceConnectionStatus, AudioPlayerStatus} = require('@discordjs/voice');
 const {token} = require('./config.json');
 
 
@@ -24,7 +25,7 @@ client.once(Events.ClientReady, () => {
 	console.log(`Estou online! E logado como ${client.user.tag}`);
     // mensagem de status do bot online
         /* client.user.setActivity('https://github.com/kayqueprogram', { type: ActivityType.Watching});*/
-        client.user.setActivity('31-Halloween', { type: ActivityType.Competing });
+        client.user.setActivity('Halloween Communis Scientia', { type: ActivityType.Competing });
         client.user.setStatus('dnd');
 	},
 );
@@ -43,27 +44,6 @@ client.on(Events.InteractionCreate, async interaction => {
 		await interaction.reply({ content: 'Ocorreu um erro ao executar este comando!', ephemeral: true });
 	}
 });
-/*
-
-	if ('data' in command && 'execute' in command) {
-		client.commands.set(command.data.name, command);
-	} else {
-		console.log(`[WARNING] O comando  ${filePath} está faltando uma propriedade "data" ou "execute" obrigatória.`);
-	}
-	*/
-
-
-
-
-
-
-// mensagem de status do bot online
-
-
-
-
-
-
 
 
 // Logando no client Discord com o token definido

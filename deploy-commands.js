@@ -23,14 +23,24 @@ const rest = new REST({ version: '10' }).setToken(token);
     try {
         console.log(`Iniciada a atualização ${commands.length} comandos de (/) `);
 
-        const data = await rest.put(
-            Routes.applicationCommands(clientId),
-            { body: commands },
-        );
+        await rest.put(Routes.applicationCommands(clientId), { body: commands },);
 
-        console.log(`Comandos de (/) ${data.length} atualizados com sucesso!`);
+        console.log(`Comandos de (/) atualizados com sucesso!`);
     } catch (error) {
-        //capturando erros
-        console.error(error);
+        process.on('unhandledRejection', (reason, p) => {
+            console.log("[SISTEMA]".red, "Ocorreu um erro ao executar um comando | Script rejeitado:");
+            console.log(reason, p);
+        });
+    
+        process.on("uncaughtException", (err, origin) => {
+            console.log("[SISTEMA]".red, "Ocorreu um erro ao executar um comando | Catch error:");
+            console.log(err, origin);
+        }) 
+    
+    process.on('uncaughtExceptionMonitor', (err, origin) => {
+            console.log("[SISTEMA]".red, "Ocorreu um erro ao executar um comando | Bloqueio:");
+            console.log(err, origin);
+        });
     }
+      
  })();
